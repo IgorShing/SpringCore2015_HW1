@@ -1,0 +1,15 @@
+com\cinema\manager\controller\ControllerImpl.class
+com\cinema\manager\controller\service\UserServiceImpl.class
+com\cinema\manager\controller\dao\UsersDao.class
+com\cinema\manager\controller\dao\UsersDaoImpl.class
+com\cinema\manager\controller\dao\AuditoriumDao.class
+com\cinema\manager\model\Auditorium.class
+com\cinema\manager\controller\dao\EventDao.class
+com\cinema\manager\model\Event.class
+com\cinema\manager\App.class
+com\cinema\manager\model\Users.class
+com\cinema\manager\model\User.class
+com\cinema\manager\model\Ticket.class
+com\cinema\manager\controller\service\UserService.class
+com\cinema\manager\Test.class
+com\cinema\manager\controller\Controller.class
