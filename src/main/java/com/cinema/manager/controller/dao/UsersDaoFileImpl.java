@@ -2,6 +2,7 @@ package com.cinema.manager.controller.dao;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -64,6 +65,20 @@ public class UsersDaoFileImpl implements UsersDao {
 		return null;
 	}
 
+	public User getUserByEmail(String email)
+	{
+		if (users == null) {
+			return null;
+		}
+
+		for (User user : users.getUsers()) {
+			if (user.getEmail().equals(email)) {
+				return user;
+			}
+		}
+		return null;
+	}
+
 	public boolean deleteUser(String id) {
 		if (users == null) {
 			return false;
@@ -102,4 +117,21 @@ public class UsersDaoFileImpl implements UsersDao {
 		}
 		return true;
 	}
+
+	public List<User> getUsersByName(String name)
+	{
+		if (users == null) {
+			return null;
+		}
+
+		List<User> usersByName = new ArrayList<User>();
+
+		for (User user : users.getUsers()) {
+			if (user.getName().equals(name))
+			{
+				usersByName.add(user);
+			}
+		}
+		return usersByName;
+	};
 }

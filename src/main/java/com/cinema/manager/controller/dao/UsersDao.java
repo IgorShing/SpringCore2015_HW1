@@ -8,6 +8,15 @@ public interface UsersDao {
 
 	List<User> getAllUsers();
 
+	List<User> getUsersByName(String name);
+
+	/**
+	 * Gets a user by Email
+	 * @param email
+	 * @return
+	 */
+	public User getUserByEmail(String email);
+
 	boolean createUser(User user);
 
 	User getUserById(String id);

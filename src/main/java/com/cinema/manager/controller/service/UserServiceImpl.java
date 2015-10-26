@@ -15,8 +15,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean register(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		return usersDao.createUser(user);
 	}
 
 	public boolean removeUser(String userId) {
@@ -28,13 +27,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public User getUserByEmail(String userEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		return usersDao.getUserByEmail(userEmail);
 	}
 
 	public List<User> getUsersByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return usersDao.getUsersByName(name);
 	}
 
 	public List<Ticket> getBookedTickets(String userId) {

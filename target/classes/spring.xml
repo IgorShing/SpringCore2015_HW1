@@ -11,6 +11,7 @@
 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
 	<import resource = "dao.xml" />
+	<import resource = "model.xml" />
  		
 	<bean id="controller" class="com.cinema.manager.controller.ControllerImpl">
 		<property name = "userService" ref = "userService"/>
