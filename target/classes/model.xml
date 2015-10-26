@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p = "http://www.springframework.org/schema/p"
+	xmlns:c = "http://www.springframework.org/schema/c"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+		
+	<util:properties id="props_auditorium_1" location="classpath:auditorium_1.properties"/>	
+	<util:properties id="props_auditorium_2" location="classpath:auditorium_2.properties"/>	
+	<util:properties id="props_auditorium_3" location="classpath:auditorium_3.properties"/>	
+	<util:properties id="props_auditorium_4" location="classpath:auditorium_4.properties"/>	
+	
+	<bean id="auditorium_1" class="com.cinema.manager.model.Auditorium">
+		<constructor-arg ref = "props_auditorium_1" />
+	</bean>
+	
+	<bean id="auditorium_2" class="com.cinema.manager.model.Auditorium">
+		<constructor-arg ref = "props_auditorium_2" />
+	</bean>
+	
+	<bean id="auditorium_3" class="com.cinema.manager.model.Auditorium">
+		<constructor-arg ref = "props_auditorium_3" />
+	</bean>
+	
+	<bean id="auditorium_4" class="com.cinema.manager.model.Auditorium">
+		<constructor-arg ref = "props_auditorium_4" />
+	</bean>
+	
+	<util:map id="auditoriums">
+		<entry key="1" value-ref="auditorium_1" />
+ 		<entry key="2" value-ref="auditorium_2" />
+		<entry key="3" value-ref="auditorium_3" />
+		<entry key="4" value-ref="auditorium_4" />
+	</util:map>
+	
+</beans>

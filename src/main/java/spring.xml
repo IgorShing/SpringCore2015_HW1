@@ -12,6 +12,7 @@
 		
 	<import resource = "dao.xml" />
 	<import resource = "model.xml" />
+	<import resource = "services.xml" />
  		
 	<bean id="controller" class="com.cinema.manager.controller.ControllerImpl">
 		<property name = "userService" ref = "userService"/>
@@ -19,6 +20,10 @@
 	
 	<bean id="userService" class="com.cinema.manager.controller.service.UserServiceImpl">
 		<constructor-arg ref="usersDao" />
+	</bean>
+	
+	<bean id="auditoriumService" class="com.cinema.manager.controller.service.AuditoriumServiceImpl">
+		<constructor-arg ref="auditoriumDao" />
 	</bean>
 	
 </beans>
