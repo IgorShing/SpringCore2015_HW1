@@ -1,7 +1,11 @@
 package com.cinema.manager.model;
 
+import java.text.ParseException;
 import java.util.Date;
+import java.util.Properties;
 
+import com.cinema.manager.utils.DateConverterUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -13,18 +17,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class User {
 
 	@JsonProperty
-	private String	id;
+	private String	   id;
 
 	@JsonProperty
-	private String	name;
+	private String	   name;
 
 	@JsonProperty
-	private String	email;
+	private String	   email;
 
 	@JsonProperty
-	private Date	dateOfBirth;
+	private Date	   dateOfBirth;
+
+	@JsonIgnore
+	private Properties	properties;
 
 	public User() {
+	}
+
+	public User(Properties properties) throws ParseException {
+		this.id = properties.getProperty("id");
+		this.name = properties.getProperty("name");
+		this.email = properties.getProperty("email");
+		this.dateOfBirth = DateConverterUtil.getSimpleDate(properties
+		        .getProperty("dateOfBirth"));
 	}
 
 	public User(String id, String name, String email, Date dateOfBirth) {

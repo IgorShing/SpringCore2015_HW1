@@ -10,10 +10,12 @@
  		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
-	<util:properties id="props_auditorium_1" location="classpath:auditorium_1.properties"/>	
-	<util:properties id="props_auditorium_2" location="classpath:auditorium_2.properties"/>	
-	<util:properties id="props_auditorium_3" location="classpath:auditorium_3.properties"/>	
-	<util:properties id="props_auditorium_4" location="classpath:auditorium_4.properties"/>	
+	<!-- Auditoriums -->
+	
+	<util:properties id="props_auditorium_1" location="classpath:com/cinema/manager/resources/auditorium_1.properties"/>	
+	<util:properties id="props_auditorium_2" location="classpath:com/cinema/manager/resources/auditorium_2.properties"/>	
+	<util:properties id="props_auditorium_3" location="classpath:com/cinema/manager/resources/auditorium_3.properties"/>	
+	<util:properties id="props_auditorium_4" location="classpath:com/cinema/manager/resources/auditorium_4.properties"/>	
 	
 	<bean id="auditorium_1" class="com.cinema.manager.model.Auditorium">
 		<constructor-arg ref = "props_auditorium_1" />
@@ -37,5 +39,9 @@
 		<entry key="3" value-ref="auditorium_3" />
 		<entry key="4" value-ref="auditorium_4" />
 	</util:map>
+	
+	<!-- Users -->
+	
+	
 	
 </beans>
