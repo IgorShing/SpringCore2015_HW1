@@ -39,7 +39,7 @@ public class User {
 		this.name = properties.getProperty("name");
 		this.email = properties.getProperty("email");
 		this.dateOfBirth = DateConverterUtil.getSimpleDate(properties
-		        .getProperty("dateOfBirth"));
+				.getProperty("dateOfBirth"));
 	}
 
 	public User(String id, String name, String email, Date dateOfBirth) {
@@ -80,5 +80,13 @@ public class User {
 
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Properties getProperties() {
+		return properties;
+	}
+
+	public void setProperties(Properties properties) {
+		this.properties = properties;
 	}
 }

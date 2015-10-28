@@ -12,9 +12,13 @@
 		
 	<import resource = "model.xml" />
 	
-	<bean id="usersDao" class="com.cinema.manager.controller.dao.UsersDaoFileImpl" 
+	<bean id="usersDaoFile" class="com.cinema.manager.controller.dao.UsersDaoFileImpl" 
 		  init-method = "init" destroy-method = "destroy">
 		<constructor-arg value = "users.json" />
+	</bean>
+	
+	<bean id="usersDaoMap" class="com.cinema.manager.controller.dao.UsersDaoMapImpl">
+		<constructor-arg ref = "usersMap" />
 	</bean>
 	
 	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl">

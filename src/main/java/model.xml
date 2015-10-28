@@ -41,7 +41,14 @@
 	</util:map>
 	
 	<!-- Users -->
+	<util:properties id="props_user_1" location="classpath:com/cinema/manager/resources/user_1.properties"/>	
 	
+	<bean id="user_1" class="com.cinema.manager.model.User">
+		<constructor-arg ref = "props_user_1" />
+	</bean>
 	
-	
+	<util:map id="usersMap">
+		<entry key="1" value-ref="user_1" />
+	</util:map>
+		
 </beans>

@@ -19,7 +19,8 @@
 	</bean>
 	
 	<bean id="userService" class="com.cinema.manager.controller.service.UserServiceImpl">
-		<constructor-arg ref="usersDao" />
+		<!-- <constructor-arg ref="usersDaoFile" /> -->
+		<constructor-arg ref="usersDaoMap" />
 	</bean>
 	
 	<bean id="auditoriumService" class="com.cinema.manager.controller.service.AuditoriumServiceImpl">

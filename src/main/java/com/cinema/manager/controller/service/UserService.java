@@ -7,6 +7,8 @@ import com.cinema.manager.model.User;
 
 public interface UserService {
 
+	List<User> getAllUsers();
+
 	boolean register(User user);
 
 	boolean removeUser(String userId);

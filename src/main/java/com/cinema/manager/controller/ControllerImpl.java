@@ -13,5 +13,4 @@ public class ControllerImpl implements Controller {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-
 }

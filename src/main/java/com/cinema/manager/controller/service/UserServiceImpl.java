@@ -14,6 +14,10 @@ public class UserServiceImpl implements UserService {
 		this.usersDao = usersDao;
 	}
 
+	public List<User> getAllUsers(){
+		return usersDao.getAllUsers();
+	};
+
 	public boolean register(User user) {
 		return usersDao.createUser(user);
 	}
