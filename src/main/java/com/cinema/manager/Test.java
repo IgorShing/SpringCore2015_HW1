@@ -33,16 +33,16 @@ public class Test {
 
 		calendar.set(1991, 2, 21);
 		usersList.add(new User("1", "Peter", "peter@gmail.com", calendar
-				.getTime()));
+		        .getTime()));
 		calendar.set(1983, 1, 11);
 		usersList.add(new User("2", "Anna", "anna@gmail.com", calendar
-				.getTime()));
+		        .getTime()));
 		calendar.set(1982, 5, 21);
 		usersList
-		.add(new User("3", "Leo", "leo@gmail.com", calendar.getTime()));
+		        .add(new User("3", "Leo", "leo@gmail.com", calendar.getTime()));
 		calendar.set(1989, 3, 4);
 		usersList.add(new User("4", "Maria", "maria@gmail.com", calendar
-				.getTime()));
+		        .getTime()));
 
 		users.setUsers(usersList);
 
@@ -56,4 +56,5 @@ public class Test {
 			e.printStackTrace();
 		}
 	}
+
 }

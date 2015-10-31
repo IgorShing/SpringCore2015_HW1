@@ -11,8 +11,7 @@ import com.cinema.manager.controller.Controller;
 public class UserServiceTest {
 
 	@Test
-	public void userServiceTest()
-	{
+	public void userServiceTest() {
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
 				"spring.xml");
 
@@ -20,13 +19,16 @@ public class UserServiceTest {
 
 		int size = controller.getUserService().getUsersByName("Anna").size();
 
-		String name = controller.getUserService().getUserByEmail("anna@gmail.com")
-				.getName();
+		String name = controller.getUserService()
+				.getUserByEmail("anna@gmail.com").getName();
 
 		assertEquals("Anna", name);
 		assertEquals(1, size);
 
+		System.out.println(controller.getUserService().getAllUsers().size());
+
 		context.close();
+
 	}
 
 }

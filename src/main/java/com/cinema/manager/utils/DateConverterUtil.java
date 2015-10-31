@@ -12,4 +12,8 @@ public class DateConverterUtil {
 		return new SimpleDateFormat(SIMPLE_DATE_FORMAT).parse(date);
 	}
 
+	public static String dateToString(Date date) {
+		return new SimpleDateFormat(SIMPLE_DATE_FORMAT).format(date);
+	}
+
 }
