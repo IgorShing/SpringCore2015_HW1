@@ -3,7 +3,6 @@ package com.cinema.manager.controller.dao;
 import java.util.Date;
 import java.util.List;
 
-import com.cinema.manager.model.Auditorium;
 import com.cinema.manager.model.Event;
 import com.cinema.manager.model.Ratings;
 
@@ -19,21 +18,19 @@ public interface EventDao {
 	 * @param rating
 	 * @return
 	 */
-	boolean create(String name, Date date, float ticketPrice, Ratings rating)
-			throws Exception;
+	boolean create(String name, Date date, Ratings rating, int auditoriumId);
 
-	boolean remove(String id);
+	boolean update(int id, Event event);
+
+	boolean delete(int id);
+
+	Event getEvent(int id);
 
 	List<Event> getByName(String name);
 
-	List<Event> getAll();
+	List<Event> getAllEvents();
 
-	// Returns events for specified date range
-	List<Event> getForDateRange(Date fromDate, Date toDate);
+	// Assigns auditorium for event
+	boolean bookEventAuditorium(Integer eventId, int auditoriumId);
 
-	// Returns events from now till the ‘to’ date
-	List<Event> getNextEvents(Date toDate);
-
-	// Assign auditorium for event for specific date
-	boolean assignAuditorium(Event event, Auditorium auditorium, Date date);
 }

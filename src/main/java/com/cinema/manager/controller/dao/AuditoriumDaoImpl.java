@@ -1,44 +1,97 @@
 package com.cinema.manager.controller.dao;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import com.cinema.manager.model.Auditorium;
 
 public class AuditoriumDaoImpl implements AuditoriumDao {
 
-	private Map<String, Auditorium>	auditoriums;
+	// Hold auditorium info. Injected by Spring
+	private Map<Integer, Auditorium>	auditoriums	= new HashMap<Integer, Auditorium>();
 
-	public AuditoriumDaoImpl(Map<String, Auditorium> auditoriums) {
+	/**
+	 * Constructor.
+	 *
+	 * @param auditoriumProps
+	 *            properties
+	 * @throws Exception
+	 */
+	public AuditoriumDaoImpl(List<Properties> auditoriumProps) throws Exception {
+
+		Integer id;
+		String name;
+		int numberOfSeats;
+		String vipSeats;
+
+		// Fill the map with auditoriums.
+		for (Properties props : auditoriumProps) {
+			id = Integer.parseInt(props.getProperty("id"));
+			name = props.getProperty("name");
+			numberOfSeats = Integer
+					.parseInt(props.getProperty("numberOfSeats"));
+			vipSeats = props.getProperty("vipSeats");
+
+			// String id = generateAuditoriumId();
+			Auditorium auditorium = new Auditorium(id, name, numberOfSeats,
+					vipSeats);
+			auditoriums.put(id, auditorium);
+		}
+	}
+
+	public List<Auditorium> getAuditoriums() {
+		List<Auditorium> items = new ArrayList<Auditorium>();
+		items.addAll(auditoriums.values());
+		return items;
+	}
+
+	public void setAuditoriums(Map<Integer, Auditorium> auditoriums) {
 		this.auditoriums = auditoriums;
 	}
 
-	// TODO return a list here
-	public Map<String, Auditorium> getAuditoriums() {
-		return auditoriums;
+	public Auditorium getAuditorium(Integer id) {
+		return auditoriums.get(id);
 	}
 
-	public void setAuditoriums(Map<String, Auditorium> auditoriums) {
-		this.auditoriums = auditoriums;
+	public boolean create(String name, int numberOfSeats, String vipSeats) {
+		Integer id = generateId();
+		Auditorium auditorium = new Auditorium(id, name, numberOfSeats,
+				vipSeats);
+		auditoriums.put(id, auditorium);
+		return true;
 	}
 
-	public Auditorium getAuditorium(String id) {
-		if (auditoriums != null) {
-			return auditoriums.get(id);
+	public boolean delete(int id) {
+		Auditorium auditorium = auditoriums.remove(id);
+		if (auditorium != null) {
+			return true;
 		}
-		return null;
+		return false;
 	}
 
-	public int getSeatsNumber(String id) {
-		if (auditoriums != null) {
-			return auditoriums.get(id).getNumberOfSeats();
+	public boolean update(int id, Auditorium auditorium) {
+		Auditorium updatedAuditorium = auditoriums.put(id, auditorium);
+		if (updatedAuditorium != null) {
+			return true;
 		}
-		return -1;
+		return false;
 	}
 
-	public String getVipSeats(String id) {
-		if (auditoriums != null) {
-			return auditoriums.get(id).getVipSeats();
+	/**
+	 * Generates an id for an event.
+	 *
+	 * @return
+	 */
+	private Integer generateId() {
+		Set<Integer> ids = auditoriums.keySet();
+		if (ids.isEmpty()) {
+			return 1;
 		}
-		return null;
+		return Collections.max(ids) + 1;
 	}
 }

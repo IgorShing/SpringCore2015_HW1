@@ -11,18 +11,17 @@
 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
 	<import resource = "model.xml" />
-	
-	<bean id="usersDaoFile" class="com.cinema.manager.controller.dao.UsersDaoFileImpl" 
-		  init-method = "init" destroy-method = "destroy">
-		<constructor-arg value = "users.json" />
-	</bean>
-	
+
 	<bean id="usersDaoMap" class="com.cinema.manager.controller.dao.UsersDaoMapImpl">
-		<constructor-arg ref = "usersMap" />
+		<constructor-arg ref = "users" />
 	</bean>
 	
-	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl2">
+	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl">
 		<constructor-arg ref = "auditoriums" />
+	</bean>
+	
+	<bean id="eventDao" class="com.cinema.manager.controller.dao.EventDaoImpl">
+		<constructor-arg ref = "events" />
 	</bean>
 	
 </beans>

@@ -11,7 +11,6 @@
 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
 	<!-- Auditoriums -->
-	
 	<util:properties id="props_auditorium_1" location="classpath:com/cinema/manager/resources/auditorium_1.properties"/>	
 	<util:properties id="props_auditorium_2" location="classpath:com/cinema/manager/resources/auditorium_2.properties"/>	
 	<util:properties id="props_auditorium_3" location="classpath:com/cinema/manager/resources/auditorium_3.properties"/>	
@@ -24,39 +23,30 @@
 	  <ref bean = "props_auditorium_4" />
 	</util:list>
 	
-	
-<!-- 	<bean id="auditorium_1" class="com.cinema.manager.model.Auditorium">
-		<constructor-arg ref = "props_auditorium_1" />
-	</bean>
-	
-	<bean id="auditorium_2" class="com.cinema.manager.model.Auditorium">
-		<constructor-arg ref = "props_auditorium_2" />
-	</bean>
-	
-	<bean id="auditorium_3" class="com.cinema.manager.model.Auditorium">
-		<constructor-arg ref = "props_auditorium_3" />
-	</bean>
-	
-	<bean id="auditorium_4" class="com.cinema.manager.model.Auditorium">
-		<constructor-arg ref = "props_auditorium_4" />
-	</bean>
-	
-	<util:map id="auditoriums">
-		<entry key="1" value-ref="auditorium_1" />
- 		<entry key="2" value-ref="auditorium_2" />
-		<entry key="3" value-ref="auditorium_3" />
-		<entry key="4" value-ref="auditorium_4" />
-	</util:map> -->
-	
 	<!-- Users -->
 	<util:properties id="props_user_1" location="classpath:com/cinema/manager/resources/user_1.properties"/>	
+	<util:properties id="props_user_2" location="classpath:com/cinema/manager/resources/user_2.properties"/>	
+	<util:properties id="props_user_3" location="classpath:com/cinema/manager/resources/user_3.properties"/>	
+	<util:properties id="props_user_4" location="classpath:com/cinema/manager/resources/user_4.properties"/>	
 	
-	<bean id="user_1" class="com.cinema.manager.model.User">
-		<constructor-arg ref = "props_user_1" />
-	</bean>
+	<util:list id = "users" >
+	  <ref bean = "props_user_1" />
+	  <ref bean = "props_user_2" />
+	  <ref bean = "props_user_3" />
+	  <ref bean = "props_user_4" />
+	</util:list>
 	
-	<util:map id="usersMap">
-		<entry key="1" value-ref="user_1" />
-	</util:map>
+	<!-- Events -->
+	<util:properties id="props_event_1" location="classpath:com/cinema/manager/resources/event_1.properties"/>	
+	<util:properties id="props_event_2" location="classpath:com/cinema/manager/resources/event_2.properties"/>	
+	<util:properties id="props_event_3" location="classpath:com/cinema/manager/resources/event_3.properties"/>	
+	<util:properties id="props_event_4" location="classpath:com/cinema/manager/resources/event_4.properties"/>	
+	
+	<util:list id = "events" >
+	  <ref bean = "props_event_1" />
+	  <ref bean = "props_event_2" />
+	  <ref bean = "props_event_3" />
+	  <ref bean = "props_event_4" />
+	</util:list>
 		
 </beans>

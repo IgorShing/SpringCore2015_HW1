@@ -10,12 +10,18 @@
  		http://www.springframework.org/schema/util
 		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 		
+	<import resource = "dao.xml" />
+	
 	<bean id="userService" class="com.cinema.manager.controller.service.UserServiceImpl">
-		<constructor-arg ref="usersDaoFile" />
+		<constructor-arg ref="usersDaoMap" />
 	</bean>
 	
 	<bean id="auditoriumService" class="com.cinema.manager.controller.service.AuditoriumServiceImpl">
 		<constructor-arg ref="auditoriumDao" />
+	</bean>
+	
+	<bean id="eventService" class="com.cinema.manager.controller.service.EventServiceImpl">
+		<constructor-arg ref="eventDao" />
 	</bean>
 	
 </beans>

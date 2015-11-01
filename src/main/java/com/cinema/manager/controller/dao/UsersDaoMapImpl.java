@@ -1,18 +1,47 @@
 package com.cinema.manager.controller.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
+import java.util.Set;
 
 import com.cinema.manager.model.User;
+import com.cinema.manager.utils.DateConverterUtil;
 
 public class UsersDaoMapImpl implements UsersDao {
 
-	private Map<String, User>	users;
+	// Hold users info. Injected by Spring
+	private Map<Integer, User>	users	= new HashMap<Integer, User>();
 
-	public UsersDaoMapImpl(Map<String, User> users) {
-		super();
-		this.users = users;
+	/**
+	 * Constructor.
+	 *
+	 * @param auditoriumProps
+	 *            properties
+	 * @throws Exception
+	 */
+	public UsersDaoMapImpl(List<Properties> userProps) throws Exception {
+
+		Integer id;
+		String name;
+		String email;
+		Date dateOfBirth;
+
+		// Fill the map with auditoriums.
+		for (Properties props : userProps) {
+			id = Integer.parseInt(props.getProperty("id"));
+			name = props.getProperty("name");
+			email = props.getProperty("email");
+			dateOfBirth = DateConverterUtil.getSimpleDate(props
+					.getProperty("dateOfBirth"));
+
+			User user = new User(id, name, email, dateOfBirth);
+			users.put(id, user);
+		}
 	}
 
 	public List<User> getAllUsers() {
@@ -28,7 +57,7 @@ public class UsersDaoMapImpl implements UsersDao {
 		if (users != null && name != null) {
 			User user;
 			List<User> userList = new ArrayList<User>();
-			for (Map.Entry<String, User> entry : users.entrySet()) {
+			for (Map.Entry<Integer, User> entry : users.entrySet()) {
 				user = entry.getValue();
 				if (name.equals(user.getName())) {
 					userList.add(user);
@@ -42,7 +71,7 @@ public class UsersDaoMapImpl implements UsersDao {
 	public User getUserByEmail(String email) {
 		if (users != null && email != null) {
 			User user;
-			for (Map.Entry<String, User> entry : users.entrySet()) {
+			for (Map.Entry<Integer, User> entry : users.entrySet()) {
 				user = entry.getValue();
 				if (email.equals(user.getEmail())) {
 					return user;
@@ -52,35 +81,46 @@ public class UsersDaoMapImpl implements UsersDao {
 		return null;
 	}
 
-	public boolean createUser(User user) {
-		if (users != null && !users.containsValue(user)) {
-			users.put(user.getId(), user);
-			return true;
-		}
-		return false;
+	public boolean create(String name, String email, Date dateOfBirth) {
+		Integer id = generateId();
+		User user = new User(id, name, email, dateOfBirth);
+		users.put(id, user);
+		return true;
 	}
 
-	public User getUserById(String id) {
+	public User getUser(Integer id) {
 		if (users != null) {
 			return users.get(id);
 		}
 		return null;
 	}
 
-	public boolean deleteUser(String id) {
+	public boolean delete(Integer id) {
 		if (users.remove(id) != null) {
 			return true;
 		}
-		;
 		return false;
 	}
 
-	public boolean updateUser(User user) {
+	public boolean update(User user) {
 		if (users != null) {
 			users.put(user.getId(), user);
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Generates an id for an event.
+	 *
+	 * @return
+	 */
+	private Integer generateId() {
+		Set<Integer> ids = users.keySet();
+		if (ids.isEmpty()) {
+			return 1;
+		}
+		return Collections.max(ids) + 1;
 	}
 
 }

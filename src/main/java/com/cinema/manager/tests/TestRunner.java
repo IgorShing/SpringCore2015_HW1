@@ -6,15 +6,12 @@ import org.junit.runner.notification.Failure;
 
 public class TestRunner {
 
-	public static void main(String [] args){
+	public static void main(String[] args) {
 		// Run JUnit tests
 		System.out.println("Run tests");
 
-
-		Result result = JUnitCore.runClasses(
-				UserServiceTest.class,
-				AuditoriumTest.class,
-				AuditoriumDaoTest.class);
+		Result result = JUnitCore.runClasses(UserServiceTest.class,
+		        AuditoriumDaoTest.class);
 		for (Failure failure : result.getFailures()) {
 			System.out.println(failure.toString());
 		}

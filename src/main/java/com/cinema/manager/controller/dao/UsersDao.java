@@ -1,5 +1,6 @@
 package com.cinema.manager.controller.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.cinema.manager.model.User;
@@ -12,16 +13,17 @@ public interface UsersDao {
 
 	/**
 	 * Gets a user by Email
+	 *
 	 * @param email
 	 * @return
 	 */
 	public User getUserByEmail(String email);
 
-	boolean createUser(User user);
+	boolean create(String name, String email, Date dateOfBirth);
 
-	User getUserById(String id);
+	User getUser(Integer id);
 
-	boolean deleteUser(String id);
+	boolean delete(Integer id);
 
-	boolean updateUser(User user);
+	boolean update(User user);
 }

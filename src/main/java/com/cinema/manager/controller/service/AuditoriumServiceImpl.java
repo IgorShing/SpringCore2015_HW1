@@ -1,6 +1,6 @@
 package com.cinema.manager.controller.service;
 
-import java.util.Map;
+import java.util.List;
 
 import com.cinema.manager.controller.dao.AuditoriumDao;
 import com.cinema.manager.model.Auditorium;
@@ -13,19 +13,24 @@ public class AuditoriumServiceImpl implements AuditoriumService {
 		this.auditoriumDao = auditoriumDao;
 	}
 
-	public Map<String, Auditorium> getAuditoriums() {
-		return auditoriumDao.getAuditoriums();
-	};
+	public boolean create(String name, int numberOfSeats, String vipSeats) {
+		return auditoriumDao.create(name, numberOfSeats, vipSeats);
+	}
 
-	public Auditorium getAuditorium(String id) {
+	public boolean delete(int id) {
+		return auditoriumDao.delete(id);
+	}
+
+	public boolean update(int id, Auditorium auditorium) {
+		return auditoriumDao.update(id, auditorium);
+	}
+
+	public Auditorium getAuditorium(Integer id) {
 		return auditoriumDao.getAuditorium(id);
-	};
+	}
 
-	public int getSeatsNumber(String id) {
-		return auditoriumDao.getSeatsNumber(id);
-	};
+	public List<Auditorium> getAuditoriums() {
+		return auditoriumDao.getAuditoriums();
+	}
 
-	public String getVipSeats(String id) {
-		return auditoriumDao.getVipSeats(id);
-	};
 }

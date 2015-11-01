@@ -1,23 +1,23 @@
 package com.cinema.manager.controller.service;
 
+import java.util.Date;
 import java.util.List;
 
-import com.cinema.manager.model.Ticket;
 import com.cinema.manager.model.User;
 
 public interface UserService {
 
 	List<User> getAllUsers();
 
-	boolean register(User user);
-
-	boolean removeUser(String userId);
-
-	User getUserById(String userId);
-
-	User getUserByEmail(String userEmail);
-
 	List<User> getUsersByName(String name);
 
-	List<Ticket> getBookedTickets(String userId);
+	public User getUserByEmail(String email);
+
+	boolean create(String name, String email, Date dateOfBirth);
+
+	User getUser(Integer id);
+
+	boolean delete(Integer id);
+
+	boolean update(User user);
 }

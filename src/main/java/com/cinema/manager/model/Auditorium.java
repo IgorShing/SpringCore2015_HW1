@@ -2,12 +2,12 @@ package com.cinema.manager.model;
 
 public class Auditorium {
 
-	private String	id;
+	private int	   id;
 	private String	name;
 	private int	   numberOfSeats;
 	private String	vipSeats;
 
-	public Auditorium(String id, String name, int numberOfSeats, String vipSeats) {
+	public Auditorium(int id, String name, int numberOfSeats, String vipSeats) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -15,11 +15,11 @@ public class Auditorium {
 		this.vipSeats = vipSeats;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -51,7 +51,7 @@ public class Auditorium {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + numberOfSeats;
 		result = prime * result
@@ -68,10 +68,7 @@ public class Auditorium {
 		if (getClass() != obj.getClass())
 			return false;
 		Auditorium other = (Auditorium) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
+		if (id != other.id)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -87,5 +84,4 @@ public class Auditorium {
 			return false;
 		return true;
 	}
-
 }

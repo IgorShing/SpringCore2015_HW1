@@ -1,67 +1,110 @@
 package com.cinema.manager.controller.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
-import com.cinema.manager.model.Auditorium;
 import com.cinema.manager.model.Event;
 import com.cinema.manager.model.Ratings;
-import com.cinema.manager.utils.RandomGenerator;
+import com.cinema.manager.utils.DateConverterUtil;
 
 public class EventDaoImpl implements EventDao {
 
-	private static final int	ID_LENGTH	            = 10;
-	private static final int	ATTEMPTS_TO_GENERATE_ID	= 10;
-	private static final String	ID_GENERATING_ERROR	    = "Unable tp generate id for the event.";
+	// Holds auditorium info. Injected by Spring
+	private Map<Integer, Event>	events	= new HashMap<Integer, Event>();
 
-	Map<String, Event>	        events;
+	public EventDaoImpl(List<Properties> eventProps) throws Exception {
 
-	public boolean create(String name, Date date, float ticketPrice,
-			Ratings rating) throws Exception {
+		Integer id;
+		String name;
+		Date date;
+		Ratings rating;
+		int auditoriumId;
 
-		String id = generateEventId();
-		events.put(id, new Event(id, name, date, ticketPrice, rating));
+		// Fill the map with events
+		for (Properties props : eventProps) {
 
+			id = Integer.parseInt(props.getProperty("id"));
+			name = props.getProperty("name");
+			date = DateConverterUtil.getSimpleDate(props.getProperty("date"));
+			rating = Ratings.valueOf(props.getProperty("rating"));
+			auditoriumId = Integer.parseInt(props.getProperty("auditoriumId"));
+
+			Event event = new Event(id, name, date, rating, auditoriumId);
+			events.put(id, event);
+		}
+	}
+
+	public Map<Integer, Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Map<Integer, Event> events) {
+		this.events = events;
+	}
+
+	public boolean create(String name, Date date, Ratings rating,
+			int auditoriumId) {
+
+		Integer id = generateId();
+		Event event = new Event(id, name, date, rating, auditoriumId);
+		events.put(id, event);
 		return true;
 	}
 
-	public boolean remove(String id) {
-		if (events != null && events.remove(id) != null) {
+	public boolean update(int id, Event event) {
+		Event updatedEvent = events.put(id, event);
+		if (updatedEvent != null) {
 			return true;
 		}
 		return false;
 	}
 
-	public List<Event> getByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean delete(int id) {
+		Event event = events.remove(id);
+		if (event != null) {
+			return true;
+		}
+		return false;
 	}
 
-	public List<Event> getAll() {
-		if (events == null) {
+	public Event getEvent(int id) {
+		return events.get(id);
+	}
+
+	public List<Event> getByName(String name) {
+		if (name == null || events.entrySet().isEmpty()) {
 			return null;
 		}
-		List<Event> allEvents = new ArrayList<Event>();
-		allEvents.addAll(events.values());
-		return allEvents;
+		Event event;
+		List<Event> eventList = new ArrayList<Event>();
+
+		for (Map.Entry<Integer, Event> entry : events.entrySet()) {
+			event = entry.getValue();
+			if (name.equals(event.getName())) {
+				eventList.add(event);
+			}
+		}
+		return eventList;
 	}
 
-	public List<Event> getForDateRange(Date fromDate, Date toDate) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Event> getAllEvents() {
+		List<Event> evnetList = new ArrayList<Event>();
+		evnetList.addAll(events.values());
+		return evnetList;
 	}
 
-	public List<Event> getNextEvents(Date toDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean assignAuditorium(Event event, Auditorium auditorium,
-			Date date) {
-		// TODO Auto-generated method stub
+	public boolean bookEventAuditorium(Integer eventId, int auditoriumId) {
+		Event event = events.get(eventId);
+		if (event != null) {
+			event.setAuditoriumId(auditoriumId);
+			return true;
+		}
 		return false;
 	}
 
@@ -70,19 +113,11 @@ public class EventDaoImpl implements EventDao {
 	 *
 	 * @return
 	 */
-	private String generateEventId() throws Exception {
-		Set<String> eventIds = events.keySet();
-		String newId = RandomGenerator.generateRandomString(ID_LENGTH);
-		int counter = 1;
-
-		while (!eventIds.contains(newId) || counter++ < ATTEMPTS_TO_GENERATE_ID) {
-			newId = RandomGenerator.generateRandomString(ID_LENGTH);
+	private Integer generateId() {
+		Set<Integer> ids = events.keySet();
+		if (ids.isEmpty()) {
+			return 1;
 		}
-
-		if (counter >= ATTEMPTS_TO_GENERATE_ID) {
-			throw new Exception(ID_GENERATING_ERROR);
-		}
-
-		return newId;
+		return Collections.max(ids) + 1;
 	}
 }

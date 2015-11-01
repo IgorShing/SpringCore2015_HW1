@@ -1,16 +1,18 @@
 package com.cinema.manager.controller.service;
 
-import java.util.Map;
+import java.util.List;
 
 import com.cinema.manager.model.Auditorium;
 
 public interface AuditoriumService {
 
-	Map<String, Auditorium> getAuditoriums();
+	boolean create(String name, int numberOfSeats, String vipSeats);
 
-	Auditorium getAuditorium(String id);
+	boolean delete(int id);
 
-	int getSeatsNumber(String id);
+	boolean update(int id, Auditorium auditorium);
 
-	String getVipSeats(String id);
+	Auditorium getAuditorium(Integer id);
+
+	List<Auditorium> getAuditoriums();
 }
