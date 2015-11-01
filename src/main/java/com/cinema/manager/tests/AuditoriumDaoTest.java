@@ -11,18 +11,22 @@ import com.cinema.manager.controller.dao.AuditoriumDao;
 public class AuditoriumDaoTest {
 
 	@Test
-	public void auditoriumDaoTest()
-	{
+	public void auditoriumDaoTest() {
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext(
-				"spring.xml");
+		        "spring.xml");
 
-		AuditoriumDao auditoriumDao = (AuditoriumDao) context.getBean("auditoriumDao");
+		AuditoriumDao auditoriumDao = (AuditoriumDao) context
+		        .getBean("auditoriumDao");
+
 		assertEquals("Victory", auditoriumDao.getAuditorium("1").getName());
 		assertEquals(100, auditoriumDao.getAuditorium("1").getNumberOfSeats());
-		assertEquals("1,2,3,4,5,6,7,8,9,10", auditoriumDao.getAuditorium("1").getVipSeats());
+		assertEquals("1,2,3,4,5,6,7,8,9,10", auditoriumDao.getAuditorium("1")
+				.getVipSeats());
 
-		assertEquals("Ultimate Palace", auditoriumDao.getAuditorium("2").getName());
-		assertEquals("Rodgers Theatre", auditoriumDao.getAuditorium("3").getName());
+		assertEquals("Ultimate Palace", auditoriumDao.getAuditorium("2")
+				.getName());
+		assertEquals("Rodgers Theatre", auditoriumDao.getAuditorium("3")
+				.getName());
 		assertEquals("Odeon", auditoriumDao.getAuditorium("4").getName());
 
 		context.close();

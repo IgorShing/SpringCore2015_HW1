@@ -21,7 +21,7 @@
 		<constructor-arg ref = "usersMap" />
 	</bean>
 	
-	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl">
+	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl2">
 		<constructor-arg ref = "auditoriums" />
 	</bean>
 	
