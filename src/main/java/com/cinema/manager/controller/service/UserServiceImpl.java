@@ -35,10 +35,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	public boolean delete(Integer id) {
-		return false;
+		return usersDao.delete(id);
 	}
 
 	public boolean update(User user) {
-		return false;
+		return usersDao.update(user);
 	}
 }

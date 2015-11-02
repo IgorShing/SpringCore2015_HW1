@@ -57,6 +57,10 @@
 	<util:properties id="props_ticket_4" location="classpath:com/cinema/manager/resources/ticket_4.properties"/>	
 	<util:properties id="props_ticket_5" location="classpath:com/cinema/manager/resources/ticket_5.properties"/>	
 	<util:properties id="props_ticket_6" location="classpath:com/cinema/manager/resources/ticket_6.properties"/>	
+	<util:properties id="props_ticket_7" location="classpath:com/cinema/manager/resources/ticket_7.properties"/>	
+	<util:properties id="props_ticket_8" location="classpath:com/cinema/manager/resources/ticket_8.properties"/>	
+	<util:properties id="props_ticket_9" location="classpath:com/cinema/manager/resources/ticket_9.properties"/>	
+	<util:properties id="props_ticket_10" location="classpath:com/cinema/manager/resources/ticket_10.properties"/>	
 	
 	<util:list id = "tickets" >
 	  <ref bean = "props_ticket_1" />
@@ -65,6 +69,10 @@
 	  <ref bean = "props_ticket_4" />
 	  <ref bean = "props_ticket_5" />
 	  <ref bean = "props_ticket_6" />
+	  <ref bean = "props_ticket_7" />
+	  <ref bean = "props_ticket_8" />
+	  <ref bean = "props_ticket_9" />
+	  <ref bean = "props_ticket_10" />
 	</util:list>
 		
 </beans>

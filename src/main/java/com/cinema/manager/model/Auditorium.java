@@ -55,7 +55,7 @@ public class Auditorium {
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + numberOfSeats;
 		result = prime * result
-		        + ((vipSeats == null) ? 0 : vipSeats.hashCode());
+				+ ((vipSeats == null) ? 0 : vipSeats.hashCode());
 		return result;
 	}
 
@@ -83,5 +83,11 @@ public class Auditorium {
 		} else if (!vipSeats.equals(other.vipSeats))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Auditorium [id=" + id + ", name=" + name + ", numberOfSeats="
+				+ numberOfSeats + ", vipSeats=" + vipSeats + "]";
 	}
 }

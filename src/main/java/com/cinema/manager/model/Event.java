@@ -17,7 +17,7 @@ public class Event {
 	private int	    auditoriumId;
 
 	public Event(int id, String name, Date date, Ratings rating,
-	        int auditoriumId) {
+			int auditoriumId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -104,6 +104,12 @@ public class Event {
 		if (rating != other.rating)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", name=" + name + ", date=" + date
+				+ ", rating=" + rating + ", auditoriumId=" + auditoriumId + "]";
 	}
 
 }

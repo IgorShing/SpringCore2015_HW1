@@ -81,4 +81,10 @@ public class Ticket {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Ticket [id=" + id + ", eventId=" + eventId + ", seats=" + seats
+				+ ", price=" + price + "]";
+	}
+
 }

@@ -3,7 +3,7 @@ package com.cinema.manager.controller.service;
 import java.util.List;
 
 import com.cinema.manager.controller.service.logic.DiscountStrategy;
-import com.cinema.manager.model.Event;
+import com.cinema.manager.model.Ticket;
 import com.cinema.manager.model.User;
 
 public class DiscountServiceImpl implements DiscountService {
@@ -14,9 +14,15 @@ public class DiscountServiceImpl implements DiscountService {
 		this.discountStrategy = discountStrategy;
 	}
 
-	public float getDiscount(User user, Event event) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getDiscount(User user, List<Ticket> ticketList) {
+
+		int totalDiscount = 0;
+
+		for (DiscountStrategy strategy : discountStrategy)
+		{
+			totalDiscount += strategy.discount(user, ticketList);
+		}
+		return totalDiscount;
 	}
 
 }

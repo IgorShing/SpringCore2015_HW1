@@ -15,6 +15,11 @@ public class BookingServiceImpl implements BookingService {
 	private BookingDao	bookingDao;
 	private TicketDao	ticketDao;
 
+	public BookingServiceImpl(BookingDao bookingDao, TicketDao ticketDao) {
+		this.bookingDao = bookingDao;
+		this.ticketDao = ticketDao;
+	}
+
 	public int getTicketPrice(Event event) {
 		List<Ticket> tickets = ticketDao.getAllTickets();
 		for (Ticket ticket : tickets) {

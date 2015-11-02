@@ -29,6 +29,8 @@
 	</bean>
 	
 	<bean id="bookingService" class="com.cinema.manager.controller.service.BookingServiceImpl">
+		<constructor-arg ref="bookingDao" />
+		<constructor-arg ref="ticketDao" />
 	</bean>
 	
 	<bean id="discountService" class="com.cinema.manager.controller.service.DiscountServiceImpl">
