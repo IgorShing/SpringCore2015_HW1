@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
 import com.cinema.manager.model.Ticket;
@@ -13,8 +14,38 @@ public class TicketDaoImpl implements TicketDao {
 
 	Map<Integer, Ticket>	tickets	= new HashMap<Integer, Ticket>();
 
-	public boolean create(int eventId, String seats, int price) {
+	public TicketDaoImpl(Map<Integer, Ticket> tickets) {
+		this.tickets = tickets;
+	}
 
+	/**
+	 * Constructor.
+	 *
+	 * @param auditoriumProps
+	 *            properties
+	 * @throws Exception
+	 */
+	public TicketDaoImpl(List<Properties> ticketProps) throws Exception {
+
+		Integer	   id;
+		int	   eventId;
+		String	seats;
+		int	   price;
+
+		// Fill the map with auditoriums.
+		for (Properties props : ticketProps) {
+			id = Integer.parseInt(props.getProperty("id"));
+			eventId = Integer.parseInt(props.getProperty("eventId"));
+			seats = props.getProperty("seats");
+			price = Integer.parseInt(props.getProperty("price"));
+
+			// String id = generateAuditoriumId();
+			Ticket ticket = new Ticket(id, eventId, seats, price);
+			tickets.put(id, ticket);
+		}
+	}
+
+	public boolean create(int eventId, String seats, int price) {
 		Integer id = generateId();
 		Ticket ticket = new Ticket(id, eventId, seats, price);
 

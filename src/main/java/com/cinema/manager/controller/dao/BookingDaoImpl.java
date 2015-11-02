@@ -14,6 +14,13 @@ public class BookingDaoImpl implements BookingDao {
 
 	Map<Integer, Booking>	bookings	= new HashMap<Integer, Booking>();
 
+	public BookingDaoImpl(){
+	}
+
+	public BookingDaoImpl(Map<Integer, Booking> bookings) {
+		this.bookings = bookings;
+	}
+
 	public boolean create(int userId, List<Ticket> tickets) {
 		Integer id = generateBookingId();
 		Booking booking = new Booking(id, userId, tickets);
@@ -59,5 +66,4 @@ public class BookingDaoImpl implements BookingDao {
 		}
 		return Collections.max(ids) + 1;
 	}
-
 }

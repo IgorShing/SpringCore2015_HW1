@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:p = "http://www.springframework.org/schema/p"
@@ -47,6 +48,23 @@
 	  <ref bean = "props_event_2" />
 	  <ref bean = "props_event_3" />
 	  <ref bean = "props_event_4" />
+	</util:list>
+	
+	<!-- Tickets -->
+	<util:properties id="props_ticket_1" location="classpath:com/cinema/manager/resources/ticket_1.properties"/>	
+	<util:properties id="props_ticket_2" location="classpath:com/cinema/manager/resources/ticket_2.properties"/>	
+	<util:properties id="props_ticket_3" location="classpath:com/cinema/manager/resources/ticket_3.properties"/>	
+	<util:properties id="props_ticket_4" location="classpath:com/cinema/manager/resources/ticket_4.properties"/>	
+	<util:properties id="props_ticket_5" location="classpath:com/cinema/manager/resources/ticket_5.properties"/>	
+	<util:properties id="props_ticket_6" location="classpath:com/cinema/manager/resources/ticket_6.properties"/>	
+	
+	<util:list id = "tickets" >
+	  <ref bean = "props_ticket_1" />
+	  <ref bean = "props_ticket_2" />
+	  <ref bean = "props_ticket_3" />
+	  <ref bean = "props_ticket_4" />
+	  <ref bean = "props_ticket_5" />
+	  <ref bean = "props_ticket_6" />
 	</util:list>
 		
 </beans>

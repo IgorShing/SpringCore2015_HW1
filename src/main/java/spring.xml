@@ -19,5 +19,7 @@
 		<property name = "userService" ref = "userService"/>
 		<property name = "auditoriumService" ref = "auditoriumService"/>
 		<property name = "eventService" ref = "eventService"/>
+		<property name = "bookingService" ref = "bookingService"/>
+		<property name = "discountService" ref = "discountService"/>
 	</bean>
 </beans>

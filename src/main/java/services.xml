@@ -24,4 +24,15 @@
 		<constructor-arg ref="eventDao" />
 	</bean>
 	
+	<bean id="ticketService" class="com.cinema.manager.controller.service.TicketServiceImpl">
+		<constructor-arg ref="ticketDao" />
+	</bean>
+	
+	<bean id="bookingService" class="com.cinema.manager.controller.service.BookingServiceImpl">
+	</bean>
+	
+	<bean id="discountService" class="com.cinema.manager.controller.service.DiscountServiceImpl">
+		<constructor-arg ref="strategies" />
+	</bean>
+	
 </beans>

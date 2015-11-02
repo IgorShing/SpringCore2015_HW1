@@ -1,6 +1,8 @@
 package com.cinema.manager.controller;
 
 import com.cinema.manager.controller.service.AuditoriumService;
+import com.cinema.manager.controller.service.BookingService;
+import com.cinema.manager.controller.service.DiscountService;
 import com.cinema.manager.controller.service.EventService;
 import com.cinema.manager.controller.service.UserService;
 
@@ -9,6 +11,8 @@ public class ControllerImpl implements Controller {
 	private UserService	      userService;
 	private AuditoriumService	auditoriumService;
 	private EventService	  eventService;
+	private BookingService bookingService;
+	private DiscountService	  discountService;
 
 	public UserService getUserService() {
 		return userService;
@@ -32,5 +36,21 @@ public class ControllerImpl implements Controller {
 
 	public void setEventService(EventService eventService) {
 		this.eventService = eventService;
+	}
+
+	public BookingService getBookingService() {
+		return bookingService;
+	}
+
+	public void setBookingService(BookingService bookingService) {
+		this.bookingService = bookingService;
+	}
+
+	public DiscountService getDiscountService() {
+		return discountService;
+	}
+
+	public void setDiscountService(DiscountService discountService) {
+		this.discountService = discountService;
 	}
 }
