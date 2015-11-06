@@ -40,7 +40,6 @@ public class App {
 			demo.execute();
 		}
 		context.close();
-		//Thread.currentThread().join();
 
 	}
 }
