@@ -22,10 +22,13 @@
 	<bean name = "circle" class = "com.cinema.aop.examples.kou.model.Circle">
 		<property name = "name" value = "Circle" />
 	</bean>
-	
+
 	<bean name = "shapeService" class = "com.cinema.aop.examples.kou.service.ShapeService" 
 			autowire = "byName" />
 			
 	<bean name = "loggingAspect" class = "com.cinema.aop.examples.kou.aspect.LoggingAspect" />
+	
+	<bean name = "counterAspect" class = "com.cinema.aop.examples.kou.aspect.CounterAspect" />
+	
 	
 </beans>

@@ -2,6 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop = "http://www.springframework.org/schema/aop"
 	xmlns:p = "http://www.springframework.org/schema/p"
 	xmlns:c = "http://www.springframework.org/schema/c"
 	xmlns:util="http://www.springframework.org/schema/util"
@@ -9,7 +10,11 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
  		http://www.springframework.org/schema/util
-		http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+   <aop:aspectj-autoproxy />
 		
 	<bean id="usersServiceDemo" class="com.cinema.manager.demo.UserServiceDemo">
 		<constructor-arg ref = "controller" />
@@ -35,6 +40,10 @@
 		<constructor-arg ref = "controller" />
 	</bean>
 	
+	<bean id="aspectDemo" class="com.cinema.manager.demo.aspects.AspectDemo">
+		<constructor-arg ref = "counterAspect" />
+	</bean>
+	
 	<util:list id = "demoList">
 		<ref bean = "usersServiceDemo" />
 		<ref bean = "auditoriumServiceDemo" />
@@ -42,6 +51,7 @@
 		<ref bean = "discountServiceDemo" />
 		<ref bean = "eventServiceDemo" />
 		<ref bean = "ticketServiceDemo" />
+		<ref bean = "aspectDemo" />
 	</util:list>
 	
 </beans>
