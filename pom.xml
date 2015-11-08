@@ -13,9 +13,23 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <org.springframework.version>4.2.0.RELEASE</org.springframework.version>
+    <org.aspectj.aspectjrt>1.7.3</org.aspectj.aspectjrt>
   </properties>
 
   <dependencies>
+  
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj.aspectjrt}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj.aspectjrt}</version>
+		</dependency>
+  
 	    <dependency>
 	      <groupId>junit</groupId>
 	      <artifactId>junit</artifactId>

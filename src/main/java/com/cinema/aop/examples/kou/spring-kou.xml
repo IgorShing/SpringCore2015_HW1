@@ -15,23 +15,17 @@
 		
 	<aop:aspectj-autoproxy />
 		
-	<import resource = "dao.xml" />
-	<import resource = "model.xml" />
-	<import resource = "services.xml" />
-	<import resource = "discount.xml" />
-	<import resource = "demo.xml" />
- 		
-	<bean id="controller" class="com.cinema.manager.controller.ControllerImpl">
-		<property name = "userService" ref = "userService"/>
-		<property name = "auditoriumService" ref = "auditoriumService"/>
-		<property name = "eventService" ref = "eventService"/>
-		<property name = "bookingService" ref = "bookingService"/>
-		<property name = "discountService" ref = "discountService"/>
-		<property name = "ticketService" ref = "ticketService"/>
+	<bean name = "triangle" class = "com.cinema.aop.examples.kou.model.Triangle">
+		<property name = "name" value = "Triangle" />
 	</bean>
 	
-	<bean id = "application" class = "com.cinema.manager.App">
-		<constructor-arg ref = "demoList" />
+	<bean name = "circle" class = "com.cinema.aop.examples.kou.model.Circle">
+		<property name = "name" value = "Circle" />
 	</bean>
+	
+	<bean name = "shapeService" class = "com.cinema.aop.examples.kou.service.ShapeService" 
+			autowire = "byName" />
+			
+	<bean name = "loggingAspect" class = "com.cinema.aop.examples.kou.aspect.LoggingAspect" />
 	
 </beans>
