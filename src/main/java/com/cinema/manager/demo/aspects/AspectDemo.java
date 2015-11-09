@@ -1,11 +1,7 @@
 package com.cinema.manager.demo.aspects;
 
-import java.util.Date;
-
 import com.cinema.manager.aspects.CounterAspect;
 import com.cinema.manager.demo.Demo;
-import com.cinema.manager.model.Event;
-import com.cinema.manager.model.Ratings;
 
 public class AspectDemo implements Demo {
 
@@ -16,12 +12,14 @@ public class AspectDemo implements Demo {
 	}
 
 	public void execute() {
-		// Test Counter Aspect
 
-		Event event = new Event(23, "qwrqwe", new Date(), Ratings.HIGH, 2356);
-		event.getName();
+		// Test Counter Aspect
+		System.out.println("************** ASPECT DEMO ***************");
+
+		System.out.println("Counters for call of Event.getName():");
 		System.out.println(counterAspect.getEventNameCallCounters().toString());
 
+		System.out.println("\nCounters for call of Ticket.getPrice() - EventId and Number of calls:");
+		System.out.println(counterAspect.getTicketPriceForEventCounters().toString());
 	}
-
 }

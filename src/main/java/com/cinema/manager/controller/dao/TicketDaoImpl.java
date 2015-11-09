@@ -27,17 +27,12 @@ public class TicketDaoImpl implements TicketDao {
 	 */
 	public TicketDaoImpl(List<Properties> ticketProps) throws Exception {
 
-		Integer	   id;
-		int	   eventId;
-		String	seats;
-		int	   price;
-
 		// Fill the map with auditoriums.
 		for (Properties props : ticketProps) {
-			id = Integer.parseInt(props.getProperty("id"));
-			eventId = Integer.parseInt(props.getProperty("eventId"));
-			seats = props.getProperty("seats");
-			price = Integer.parseInt(props.getProperty("price"));
+			Integer id = Integer.parseInt(props.getProperty("id"));
+			int eventId = Integer.parseInt(props.getProperty("eventId"));
+			String seats = props.getProperty("seats");
+			int price = Integer.parseInt(props.getProperty("price"));
 
 			// String id = generateAuditoriumId();
 			Ticket ticket = new Ticket(id, eventId, seats, price);

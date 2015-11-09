@@ -26,13 +26,13 @@
 	</bean>
 	
 	<bean id="eventDao" class="com.cinema.manager.controller.dao.EventDaoImpl">
-		<constructor-arg ref = "events" />
+		<constructor-arg ref = "eventsMap" />
 	</bean>
 	
 	<bean id="bookingDao" class="com.cinema.manager.controller.dao.BookingDaoImpl" />
 	
 	<bean id="ticketDao" class="com.cinema.manager.controller.dao.TicketDaoImpl">
-		<constructor-arg ref = "tickets" />
+		<constructor-arg ref = "ticketsMap" />
 	</bean>
 	
 </beans>
