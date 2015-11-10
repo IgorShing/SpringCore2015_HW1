@@ -41,10 +41,10 @@ public class CounterAspect {
 		}
 	}
 
-	@AfterReturning("getPrice() && getTicketPriceAdvice()")
+	/*	@AfterReturning("getPrice()")
 	public void getTicketPriceAdvice(JoinPoint joinPoint){
 
-	}
+	}*/
 
 	// Pointcuts for the getEventNameAdvice
 	@Pointcut("execution(* getName())")

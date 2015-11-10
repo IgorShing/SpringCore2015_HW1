@@ -18,7 +18,7 @@ public interface BookingService {
 	 * @param user
 	 * @return
 	 */
-	int getTicketPrice(Event event);
+	int getTicketPrice(Event event) throws Exception;
 
 	/**
 	 * User could be registered or not. If user is registered, then booking

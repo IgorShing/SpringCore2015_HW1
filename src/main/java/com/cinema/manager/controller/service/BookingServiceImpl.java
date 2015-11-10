@@ -20,15 +20,20 @@ public class BookingServiceImpl implements BookingService {
 		this.ticketDao = ticketDao;
 	}
 
-	public int getTicketPrice(Event event) {
+	public int getTicketPrice(Event event) throws Exception {
+		int price = -1;
+
 		List<Ticket> tickets = ticketDao.getAllTickets();
 		for (Ticket ticket : tickets) {
 
 			if (event.getId() == ticket.getEventId()) {
-				return ticket.getPrice();
+				price = ticket.getPrice();
 			}
 		}
-		return -1;
+		if (price < 0){
+			throw new Exception("Price is unavailable. No ticket was found.");
+		}
+		return price;
 	}
 
 	public void bookTicket(User user, Ticket ticket) {

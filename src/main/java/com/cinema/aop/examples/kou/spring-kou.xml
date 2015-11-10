@@ -26,9 +26,16 @@
 	<bean name = "shapeService" class = "com.cinema.aop.examples.kou.service.ShapeService" 
 			autowire = "byName" />
 			
+	<bean name = "user" class = "com.cinema.aop.examples.kou.model.User">
+		<constructor-arg value = "1" />
+		<constructor-arg value = "Peter" />
+	</bean>
+	
+	<bean name = "userService" class = "com.cinema.aop.examples.kou.service.UserService" autowire = "byName" />
+			
+	<!-- Aspects -->		
 	<bean name = "loggingAspect" class = "com.cinema.aop.examples.kou.aspect.LoggingAspect" />
-	
 	<bean name = "counterAspect" class = "com.cinema.aop.examples.kou.aspect.CounterAspect" />
-	
+	<bean name = "userAspect" class = "com.cinema.aop.examples.kou.aspect.UserAspect" />
 	
 </beans>

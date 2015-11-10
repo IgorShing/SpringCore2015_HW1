@@ -121,10 +121,10 @@
 	</util:list> -->
 	
 	<bean id = "ticket_1" class ="com.cinema.manager.model.Ticket">
-		<constructor-arg value = "1"/>
-		<constructor-arg value = "1"/>
-		<constructor-arg value = "3"/>
-		<constructor-arg value = "50000"/>
+		<constructor-arg value = "1"/> <!-- id -->
+		<constructor-arg value = "1"/> <!-- eventId -->
+		<constructor-arg value = "3"/> <!-- seat -->
+		<constructor-arg value = "50000"/> <!-- price -->
 	</bean>
 	
 	<bean id = "ticket_2" class ="com.cinema.manager.model.Ticket">

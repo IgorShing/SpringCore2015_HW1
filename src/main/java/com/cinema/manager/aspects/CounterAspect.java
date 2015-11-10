@@ -17,8 +17,11 @@ public class CounterAspect {
 
 	private Map<String, Integer>	eventNameCallCounters	= new HashMap<String, Integer>();
 
-	// Contains name of an eventId and number of getPrice calls
+	// Contains eventId and number of Ticket.getPrice() calls
 	private Map<Integer, Integer>	ticketPriceForEventCounters	= new HashMap<Integer, Integer>();
+
+	// Contains eventId and number of bookings of its tickets
+	private Map<Integer, Integer> eventTicketsBookingNumber = new HashMap<Integer, Integer>();
 
 	public Map<String, Integer> getEventNameCallCounters() {
 		return eventNameCallCounters;
@@ -36,6 +39,15 @@ public class CounterAspect {
 	public void setTicketPriceForEventCounters(
 			Map<Integer, Integer> ticketPriceForEventCounters) {
 		this.ticketPriceForEventCounters = ticketPriceForEventCounters;
+	}
+
+	public Map<Integer, Integer> getEventTicketsBookingNumber() {
+		return eventTicketsBookingNumber;
+	}
+
+	public void setEventTicketsBookingNumber(
+			Map<Integer, Integer> eventTicketsBookingNumber) {
+		this.eventTicketsBookingNumber = eventTicketsBookingNumber;
 	}
 
 	@AfterReturning("getEventName() && getAllEventMethods()")
@@ -71,11 +83,17 @@ public class CounterAspect {
 		}
 	}
 
-	@AfterReturning("bookTicket() && getAllBookingMethods()")
+	// For the method public void bookTicket(User user, Ticket ticket) in BookingServiceImpl
+	@AfterReturning("getAllBookingServiceImplMethods() && getBookTicket() && args(user, ticket)")
 	public void bookingTicketAdvice(User user, Ticket ticket){
-
-		System.out.println("+++++++++++++++++++++++++++++" + ticket.getPrice());
-
+		Integer eventId = ticket.getEventId();
+		if (eventTicketsBookingNumber.containsKey(eventId)){
+			eventTicketsBookingNumber.put(eventId, eventTicketsBookingNumber.get(eventId) + 1);
+		}
+		else
+		{
+			eventTicketsBookingNumber.put(eventId, 1);
+		}
 	}
 
 	// Pointcuts for the getEventNameAdvice
@@ -96,12 +114,11 @@ public class CounterAspect {
 	public void getAllTicketMethods() {
 	}
 
-	// Pointcuts for booking tickets
-	@Pointcut("args(user, ticket)")
-	public void bookTicket(){
+	@Pointcut("within(com.cinema.manager.controller.service.BookingServiceImpl)")
+	public void getAllBookingServiceImplMethods() {
 	}
 
-	@Pointcut("within(com.cinema.manager.controller.service.BookingServiceImpl)")
-	public void getAllBookingMethods(){
+	@Pointcut("execution(* bookTicket(..))")
+	public void getBookTicket() {
 	}
 }

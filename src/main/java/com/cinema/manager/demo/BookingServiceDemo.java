@@ -26,13 +26,34 @@ public class BookingServiceDemo implements Demo {
 
 		Event event = controller.getEventService().getEvent(1);
 		User user = controller.getUserService().getUser(4);
-		Ticket ticket = controller.getTicketService().getTicket(3);
 		List<Ticket> tickets = controller.getTicketService().getAllTickets();
 
 		System.out.println("Show ticket price:");
-		System.out.println(bookingService.getTicketPrice(event));
+		try {
+			System.out.println(bookingService.getTicketPrice(event));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 
-		bookingService.bookTicket(user, ticket);
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(3));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(4));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(5));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(6));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(7));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(8));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(9));
+
+		user = controller.getUserService().getUser(1);
+
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(3));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(4));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(5));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(6));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(7));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(8));
+		bookingService.bookTicket(user, controller.getTicketService().getTicket(9));
+
 
 		System.out.println("Show bookings booking a ticket:");
 		System.out.println(bookingService.getAllBookings());
