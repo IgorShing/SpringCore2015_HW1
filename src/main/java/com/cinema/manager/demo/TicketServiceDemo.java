@@ -34,6 +34,9 @@ public class TicketServiceDemo implements Demo {
 		System.out.println("Get ticket id = 3");
 		System.out.println(ticketService.getTicket(3));
 
+		System.out.println("\nGet ticket (id = 3) price:");
+		System.out.println(ticketService.getTicket(4).getPrice());
+
 		System.out.println("Show all tickets");
 		System.out.println(ticketService.getAllTickets());
 		System.out.println();

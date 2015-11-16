@@ -26,17 +26,12 @@ public class UsersDaoMapImpl implements UsersDao {
 	 */
 	public UsersDaoMapImpl(List<Properties> userProps) throws Exception {
 
-		Integer id;
-		String name;
-		String email;
-		Date dateOfBirth;
-
 		// Fill the map with auditoriums.
 		for (Properties props : userProps) {
-			id = Integer.parseInt(props.getProperty("id"));
-			name = props.getProperty("name");
-			email = props.getProperty("email");
-			dateOfBirth = DateConverterUtil.getSimpleDate(props
+			Integer id = Integer.parseInt(props.getProperty("id"));
+			String name = props.getProperty("name");
+			String email = props.getProperty("email");
+			Date dateOfBirth = DateConverterUtil.getSimpleDate(props
 					.getProperty("dateOfBirth"));
 
 			User user = new User(id, name, email, dateOfBirth);

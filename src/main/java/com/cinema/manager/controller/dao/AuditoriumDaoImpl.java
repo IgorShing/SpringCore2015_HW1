@@ -24,18 +24,13 @@ public class AuditoriumDaoImpl implements AuditoriumDao {
 	 */
 	public AuditoriumDaoImpl(List<Properties> auditoriumProps) throws Exception {
 
-		Integer id;
-		String name;
-		int numberOfSeats;
-		String vipSeats;
-
 		// Fill the map with auditoriums.
 		for (Properties props : auditoriumProps) {
-			id = Integer.parseInt(props.getProperty("id"));
-			name = props.getProperty("name");
-			numberOfSeats = Integer
+			Integer id = Integer.parseInt(props.getProperty("id"));
+			String name = props.getProperty("name");
+			int numberOfSeats = Integer
 					.parseInt(props.getProperty("numberOfSeats"));
-			vipSeats = props.getProperty("vipSeats");
+			String vipSeats = props.getProperty("vipSeats");
 
 			// String id = generateAuditoriumId();
 			Auditorium auditorium = new Auditorium(id, name, numberOfSeats,

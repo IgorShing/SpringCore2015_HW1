@@ -18,27 +18,27 @@ public class EventDaoImpl implements EventDao {
 	// Holds auditorium info. Injected by Spring
 	private Map<Integer, Event>	events	= new HashMap<Integer, Event>();
 
-	public EventDaoImpl(List<Properties> eventProps) throws Exception {
+	public EventDaoImpl(Map<Integer, Event> events) {
+		super();
+		this.events = events;
+	}
 
-		Integer id;
-		String name;
-		Date date;
-		Ratings rating;
-		int auditoriumId;
+	public EventDaoImpl(List<Properties> eventProps) throws Exception {
 
 		// Fill the map with events
 		for (Properties props : eventProps) {
 
-			id = Integer.parseInt(props.getProperty("id"));
-			name = props.getProperty("name");
-			date = DateConverterUtil.getSimpleDate(props.getProperty("date"));
-			rating = Ratings.valueOf(props.getProperty("rating"));
-			auditoriumId = Integer.parseInt(props.getProperty("auditoriumId"));
+			Integer id = Integer.parseInt(props.getProperty("id"));
+			String name = props.getProperty("name");
+			Date date = DateConverterUtil.getSimpleDate(props.getProperty("date"));
+			Ratings rating = Ratings.valueOf(props.getProperty("rating"));
+			int auditoriumId = Integer.parseInt(props.getProperty("auditoriumId"));
 
 			Event event = new Event(id, name, date, rating, auditoriumId);
 			events.put(id, event);
 		}
 	}
+
 
 	public Map<Integer, Event> getEvents() {
 		return events;

@@ -1,6 +1,9 @@
 package com.cinema.manager.model;
 
+import java.text.ParseException;
 import java.util.Date;
+
+import com.cinema.manager.utils.DateConverterUtil;
 
 /**
  * Describes an event (movie).
@@ -24,6 +27,14 @@ public class Event {
 		this.date = date;
 		this.rating = rating;
 		this.auditoriumId = auditoriumId;
+	}
+
+	public Event(String id, String name, String date, String rating, String auditoriumId) throws ParseException {
+		this.id = Integer.parseInt(id);
+		this.name = name;
+		this.date = DateConverterUtil.getSimpleDate(date);
+		this.rating = Ratings.valueOf(rating);
+		this.auditoriumId = Integer.parseInt(auditoriumId);
 	}
 
 	public int getId() {

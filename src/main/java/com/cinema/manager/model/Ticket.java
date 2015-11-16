@@ -7,6 +7,13 @@ public class Ticket {
 	private String	seats;
 	private int	   price;
 
+	public Ticket(String id, String eventId, String seats, String price) {
+		this.id = Integer.parseInt(id);
+		this.eventId = Integer.parseInt(eventId);
+		this.seats = seats;
+		this.price = Integer.parseInt(price);
+	}
+
 	public Ticket(int id, int eventId, String seats, int price) {
 		super();
 		this.id = id;

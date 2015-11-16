@@ -21,8 +21,19 @@ public class DiscountServiceDemo implements Demo {
 		System.out.println("************* DISCOUNT SERVICE DEMO ****************");
 		DiscountService discountService = controller.getDiscountService();
 
-		User user = controller.getUserService().getUser(4);
+		User user = controller.getUserService().getUser(1);
 		List<Ticket> ticketList = controller.getTicketService().getAllTickets();
+
+		System.out.println("Total discount: " + discountService.getDiscount(user, ticketList));
+
+		user = controller.getUserService().getUser(4);
+		ticketList = controller.getTicketService().getAllTickets();
+
+		System.out.println("Total discount: " + discountService.getDiscount(user, ticketList));
+
+		// Set the current day and month for this user to demonstrate BirthdayStrategy (see user_3.properties)
+		user = controller.getUserService().getUser(3);
+		ticketList = controller.getTicketService().getAllTickets();
 
 		System.out.println("Total discount: " + discountService.getDiscount(user, ticketList));
 	}

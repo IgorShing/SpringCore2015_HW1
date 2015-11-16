@@ -15,6 +15,12 @@
 
    <aop:aspectj-autoproxy />
    
+   	<import resource = "services.xml" />
+   	
    <bean id = "counterAspect" class = "com.cinema.manager.aspects.CounterAspect" />
-	
+   <bean id = "discountAspect" class = "com.cinema.manager.aspects.DiscountAspect" />
+   <bean id = "luckyWinnerAspect" class = "com.cinema.manager.aspects.LuckyWinnerAspect">
+   		<constructor-arg name = "bookingService" ref = "bookingService" />
+   </bean>
+
 </beans>

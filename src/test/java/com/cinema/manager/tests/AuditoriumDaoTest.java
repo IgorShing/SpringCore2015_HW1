@@ -15,14 +15,14 @@ public class AuditoriumDaoTest {
 
 	@BeforeClass
 	public static void setUp() {
-		context = new ClassPathXmlApplicationContext("spring.xml");
+		context = new ClassPathXmlApplicationContext("/src/main/java/spring.xml");
 	}
 
 	@Test
 	public void auditoriumDaoTest() {
 
 		AuditoriumDao auditoriumDao = (AuditoriumDao) context
-		        .getBean("auditoriumDao");
+				.getBean("auditoriumDao");
 
 		assertEquals("Victory", auditoriumDao.getAuditorium(1).getName());
 		assertEquals(100, auditoriumDao.getAuditorium(1).getNumberOfSeats());
