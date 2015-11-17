@@ -16,6 +16,10 @@ public class JDBCDemo {
 
 		Circle circle = jdbcDaoImpl.getCircle(2);
 		System.out.println(circle.getName());
+
+		System.out.println("Number of recoreds in figures: "
+		        + jdbcDaoImpl.getCircleCount());
+
 	}
 
 }
