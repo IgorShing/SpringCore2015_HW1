@@ -1,38 +1,42 @@
 package com.cinema.database.examples.koushik.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.cinema.database.examples.koushik.model.Circle;
 
-@Component
-public class JdbcDaoImpl {
+public class JdbcDaoImpl2 {
 
 	private Connection	      connect;
 	private Statement	      statement;
 	private PreparedStatement	preparedStatement;
 	private ResultSet	      resultSet;
 
-	@Autowired
-	private DataSource	      dataSource;
+	private String	          driver	= "jdbc:mysql";
+	private String	          server	= "localhost";
+	private String	          dataBase	= "figures";
+	private String	          user	   = "Admin";
+	private String	          password	= "1111";
 
 	public Circle getCircle(int circleId) {
 
 		Circle circle = null;
 		try {
+			// This will load the MySQL driver, each DB has its own driver
+			Class.forName("com.mysql.jdbc.Driver");
+
+			String url = driver + "://" + server + "/" + dataBase + "?user="
+					+ user + "&password=" + password;
+
 			// Setup the connection with the DB
-			connect = dataSource.getConnection();
+			connect = DriverManager.getConnection(url);
 
 			preparedStatement = connect
-					.prepareStatement("SELECT * FROM figures.figures WHERE id = ?");
+			        .prepareStatement("SELECT * FROM figures.figures WHERE id = ?");
 
 			// Initialize the parameter value
 			preparedStatement.setInt(1, circleId);
