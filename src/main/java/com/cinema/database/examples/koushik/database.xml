@@ -22,7 +22,10 @@
 		<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
 			<!-- <property name="driverClassName" value = "com.mysql.jdbc.Driver" /> -->
 			<property name="url" value = "jdbc:mysql://localhost/figures" />
-			<property name="username" value = "Admin" />
+			
+			<!-- Use this login on "external machine" -->
+			<property name="username" value = "root" />
+			<!-- <property name="username" value = "Admin" /> -->
 			<property name="password" value = "1111" /> 
 		</bean>
 

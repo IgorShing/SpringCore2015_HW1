@@ -5,11 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import com.cinema.database.examples.koushik.model.Circle;
@@ -32,7 +34,7 @@ public class JdbcDaoImpl {
 			connect = jdbcTemplate.getDataSource().getConnection();
 
 			preparedStatement = connect
-			        .prepareStatement("SELECT * FROM figures.figures WHERE id = ?");
+					.prepareStatement("SELECT * FROM figures.figures WHERE id = ?");
 
 			// Initialize the parameter value
 			preparedStatement.setInt(1, circleId);
@@ -61,6 +63,37 @@ public class JdbcDaoImpl {
 		String sql = "SELECT Count(*) FROM Figures";
 		jdbcTemplate.setDataSource(getDataSource());
 		return jdbcTemplate.queryForObject(sql, Integer.class);
+	}
+
+
+	public String getCircleNameById(int circleId){
+		String sql = "SELECT NAME FROM Figures WHERE Id=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {circleId}, String.class);
+	}
+
+	/**
+	 * Extracts a circle by its Id.
+	 * @param circleId
+	 * @return
+	 */
+	public Circle getCircleById(int circleId){
+		String sql = "SELECT * FROM Figures WHERE Id=?";
+		return jdbcTemplate.queryForObject(sql, new Object[] {circleId}, new CircleMapper());
+	}
+
+	public List<Circle> getAllCircles(){
+		String sql = "SELECT * FROM Figures";
+		return jdbcTemplate.query(sql, new CircleMapper());
+	}
+
+	public void insertCircle(Circle circle){
+		String sql = "INSERT INTO Figures(Id, NAME) VALUES(?, ?)";
+		jdbcTemplate.update(sql, new Object[] {circle.getId(), circle.getName()});
+	}
+
+	public void  createPlainFiguresTable(){
+		String sql = "CREATE TABLE plainFigures (id INT NOT NULL AUTO_INCREMENT, NAME VARCHAR(50) NOT NULL, PRIMARY KEY (ID));";
+		jdbcTemplate.execute(sql);
 	}
 
 	private void writeResultSet(ResultSet resultSet) throws SQLException {
@@ -104,5 +137,20 @@ public class JdbcDaoImpl {
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	/**
+	 * Returns an object extracted from the DB.
+	 * @author Igor_Shingaryov
+	 *
+	 */
+	private static final class CircleMapper implements RowMapper<Circle> {
+
+		public Circle mapRow(ResultSet resultSet, int rowNum) throws SQLException {
+			Circle circle = new Circle();
+			circle.setId(resultSet.getInt("Id"));
+			circle.setName(resultSet.getString("NAME"));
+			return circle;
+		}
 	}
 }
