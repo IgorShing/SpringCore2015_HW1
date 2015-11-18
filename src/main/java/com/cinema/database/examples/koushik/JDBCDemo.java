@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.cinema.database.examples.koushik.dao.JdbcDaoImpl;
+import com.cinema.database.examples.koushik.model.Circle;
 
 public class JDBCDemo {
 
@@ -29,11 +30,11 @@ public class JDBCDemo {
 		List<Circle> circles = jdbcDaoImpl.getAllCircles();
 		System.out.println(circles.toString());
 		 */
-		jdbcDaoImpl.createPlainFiguresTable();
+		//	jdbcDaoImpl.createPlainFiguresTable();
 
 
 
-		// jdbcDaoImpl.insertCircle(new Circle(4, "Ellipse"));
+		jdbcDaoImpl.insertCircle(new Circle(5, "Cube"));
 
 	}
 
