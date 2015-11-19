@@ -1,8 +1,11 @@
 package com.cinema.manager.demo.aspects;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cinema.manager.aspects.CounterAspect;
 import com.cinema.manager.aspects.DiscountAspect;
 import com.cinema.manager.aspects.LuckyWinnerAspect;
+import com.cinema.manager.controller.dao.database.CounterDaoImpl;
 import com.cinema.manager.demo.Demo;
 
 public class AspectDemo implements Demo {
@@ -10,6 +13,9 @@ public class AspectDemo implements Demo {
 	private CounterAspect	counterAspect;
 	private DiscountAspect discountAspect;
 	private LuckyWinnerAspect luckyWinnerAspect;
+
+	@Autowired
+	private CounterDaoImpl counterDaoImpl;
 
 	public AspectDemo(CounterAspect counterAspect, DiscountAspect discountAspect, LuckyWinnerAspect luckyWinnerAspect) {
 		this.counterAspect = counterAspect;
@@ -40,5 +46,11 @@ public class AspectDemo implements Demo {
 
 		System.out.println("\nCounters for booking lucky tickets (userId and his lucky tickets ids)");
 		System.out.println(luckyWinnerAspect.getLuckyTickets().toString());
+
+		// Save counters in a database
+		counterDaoImpl.updateEventNameCallCounters(counterAspect.getEventNameCallCounters());
+		counterDaoImpl.updateTicketPriceForEventCounters(counterAspect.getTicketPriceForEventCounters());
+		counterDaoImpl.updateEventTicketsBookingNumber(counterAspect.getEventTicketsBookingNumber());
+
 	}
 }

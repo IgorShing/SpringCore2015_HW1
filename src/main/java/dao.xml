@@ -21,15 +21,18 @@
 		<constructor-arg ref = "users" />
 	</bean>
 	
-<!-- 	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.memory.AuditoriumDaoImpl">
+<!-- <bean id="auditoriumDao" class="com.cinema.manager.controller.dao.memory.AuditoriumDaoImpl">
 		<constructor-arg ref = "auditoriums" />
 	</bean> -->
 	
 	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.database.AuditoriumDaoDBImpl">
 	</bean>
 	
-	<bean id="eventDao" class="com.cinema.manager.controller.dao.memory.EventDaoImpl">
+<!-- 	<bean id="eventDao" class="com.cinema.manager.controller.dao.memory.EventDaoImpl">
 		<constructor-arg ref = "eventsMap" />
+	</bean> -->
+	
+	<bean id="eventDao" class="com.cinema.manager.controller.dao.database.EventDaoDBImpl">
 	</bean>
 	
 	<bean id="bookingDao" class="com.cinema.manager.controller.dao.memory.BookingDaoImpl" />

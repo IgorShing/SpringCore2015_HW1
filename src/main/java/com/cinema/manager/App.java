@@ -1,15 +1,12 @@
 package com.cinema.manager;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.cinema.manager.controller.dao.EventDao;
+import com.cinema.manager.controller.dao.BookingDao;
 import com.cinema.manager.demo.Demo;
-import com.cinema.manager.model.Event;
-import com.cinema.manager.model.Ratings;
 
 /**
  * Main application. Runs all demos.
@@ -59,7 +56,7 @@ public class App {
 		auditoriumDao.update(0, auditorium);
 		System.out.println(auditoriumDao.getAuditoriums());*/
 
-		EventDao eventDao = (EventDao) context.getBean("eventDaoDBImpl");
+		/*		EventDao eventDao = (EventDao) context.getBean("eventDaoDBImpl");
 
 		System.out.println(eventDao.getEvent(1));
 
@@ -69,8 +66,10 @@ public class App {
 		eventDao.update(3, event);
 
 		System.out.println(eventDao.getByName("Titanic"));
-		eventDao.bookEventAuditorium(1, 3);
+		eventDao.bookEventAuditorium(1, 3);*/
 
+		BookingDao bookingDao = (BookingDao) context.getBean("bookingDaoDBImpl");
+		bookingDao.delete(1);
 
 		context.close();
 	}
