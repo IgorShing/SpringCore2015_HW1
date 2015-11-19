@@ -5,55 +5,40 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import com.cinema.manager.controller.dao.AuditoriumDao;
 import com.cinema.manager.model.Auditorium;
 
 @Component
-public class AuditoriumDaoDBImpl implements AuditoriumDao {
-
-	private JdbcTemplate	  jdbcTemplate;
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
-
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-	}
+public class AuditoriumDaoDBImpl extends DaoDB implements AuditoriumDao {
 
 	public boolean create(String name, int numberOfSeats, String vipSeats) {
-		String sql = "INSERT INTO auditoriums(name, numberOfSeats, vipSeats) VALUES(:name, :numberOfSeats, :vipSeats)";
+		String sql = "INSERT INTO Auditoriums(name, numberOfSeats, vipSeats) VALUES(:name, :numberOfSeats, :vipSeats)";
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource("name", name);
 		mapSqlParameterSource.addValue("numberOfSeats", numberOfSeats);
 		mapSqlParameterSource.addValue("vipSeats", vipSeats);
 
-		namedParameterJdbcTemplate.update(sql, mapSqlParameterSource);
+		getNamedParameterJdbcTemplate().update(sql, mapSqlParameterSource);
 		return true;
 	}
 
 	public boolean delete(int id) {
-		String sql = "DELETE FROM auditoriums WHERE Id=?";
+		String sql = "DELETE FROM Auditoriums WHERE Id=?";
 		// Define query arguments
 		Object[] params = {id};
 
 		// Define SQL types of the arguments
 		int[] types = {Types.BIGINT};
 
-		jdbcTemplate.update(sql, params, types);
+		getJdbcTemplate().update(sql, params, types);
 		return true;
 	}
 
 	public boolean update(int id, Auditorium auditorium) {
-		String sql = "UPDATE auditoriums SET name=?, numberOfSeats=?, vipSeats=? WHERE Id=?";
+		String sql = "UPDATE Auditoriums SET name=?, numberOfSeats=?, vipSeats=? WHERE Id=?";
 
 		// Define query arguments
 		Object[] params = {auditorium.getName(), auditorium.getNumberOfSeats(), auditorium.getVipSeats(), id};
@@ -61,18 +46,18 @@ public class AuditoriumDaoDBImpl implements AuditoriumDao {
 		// Define SQL types of the arguments
 		int[] types = {Types.VARCHAR, Types.BIGINT, Types.VARCHAR, Types.BIGINT};
 
-		jdbcTemplate.update(sql, params, types);
-		return false;
+		getJdbcTemplate().update(sql, params, types);
+		return true;
 	}
 
 	public Auditorium getAuditorium(Integer id) {
-		String sql = "SELECT * FROM auditoriums WHERE Id=?";
-		return jdbcTemplate.queryForObject(sql, new Object[] {id}, new AuditoriumMapper());
+		String sql = "SELECT * FROM Auditoriums WHERE Id=?";
+		return getJdbcTemplate().queryForObject(sql, new Object[] {id}, new AuditoriumMapper());
 	}
 
 	public List<Auditorium> getAuditoriums() {
-		String sql = "SELECT * FROM auditoriums";
-		return jdbcTemplate.query(sql, new AuditoriumMapper());
+		String sql = "SELECT * FROM Auditoriums";
+		return getJdbcTemplate().query(sql, new AuditoriumMapper());
 	}
 
 	private static final class AuditoriumMapper implements RowMapper<Auditorium>{

@@ -1,13 +1,15 @@
 package com.cinema.manager;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.cinema.manager.controller.dao.AuditoriumDao;
+import com.cinema.manager.controller.dao.EventDao;
 import com.cinema.manager.demo.Demo;
-import com.cinema.manager.model.Auditorium;
+import com.cinema.manager.model.Event;
+import com.cinema.manager.model.Ratings;
 
 /**
  * Main application. Runs all demos.
@@ -43,7 +45,7 @@ public class App {
 		}
 
 		// Test dao for database
-		AuditoriumDao auditoriumDao = (AuditoriumDao) context.getBean("auditoriumDaoDBImpl");
+		/*		AuditoriumDao auditoriumDao = (AuditoriumDao) context.getBean("auditoriumDaoDBImpl");
 		System.out.println(auditoriumDao.getAuditoriums());
 
 		//auditoriumDao.create("Rocket", 400, "1 - 20");
@@ -55,7 +57,20 @@ public class App {
 		Auditorium auditorium = auditoriumDao.getAuditorium(5);
 		auditorium.setName("Cinema");
 		auditoriumDao.update(0, auditorium);
-		System.out.println(auditoriumDao.getAuditoriums());
+		System.out.println(auditoriumDao.getAuditoriums());*/
+
+		EventDao eventDao = (EventDao) context.getBean("eventDaoDBImpl");
+
+		System.out.println(eventDao.getEvent(1));
+
+		// eventDao.create("Titanic", new Date(), Ratings.HIGH, 2);
+
+		Event event = new Event(0, "Titanic", new Date(), Ratings.HIGH, 3);
+		eventDao.update(3, event);
+
+		System.out.println(eventDao.getByName("Titanic"));
+		eventDao.bookEventAuditorium(1, 3);
+
 
 		context.close();
 	}
