@@ -32,5 +32,4 @@ public class AuditoriumServiceImpl implements AuditoriumService {
 	public List<Auditorium> getAuditoriums() {
 		return auditoriumDao.getAuditoriums();
 	}
-
 }

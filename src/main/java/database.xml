@@ -17,20 +17,17 @@
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
 		<context:annotation-config />
-		<context:component-scan base-package = "com.cinema.database.examples.koushik.dao" />
 		
-		<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<!-- <property name="driverClassName" value = "com.mysql.jdbc.Driver" /> -->
-			<property name="url" value = "jdbc:mysql://localhost/figures" />
-			
-			<!-- Use this login on "external machine" -->
-			<property name="username" value = "root" />
-			<!-- <property name="username" value = "Admin" /> -->
-			<property name="password" value = "1111" /> 
-		</bean>
-
-		<bean id = "simpleJdbcDaoImpl" class = "com.cinema.database.examples.koushik.dao.SimpleJdbcDaoImpl">
-			<property name ="dataSource" value="dataSource" />
-		</bean>
+		<context:component-scan base-package = "com.cinema.manager.controller.dao.database" />
+		
+			<bean id = "dataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+				<!-- <property name="driverClassName" value = "com.mysql.jdbc.Driver" /> -->
+				<property name="url" value = "jdbc:mysql://localhost/cinema" />
+				
+				<!-- Use this login on "external machine" -->
+				<property name="username" value = "root" />
+				<!-- <property name="username" value = "Admin" /> -->
+				<property name="password" value = "1111" /> 
+			</bean>
 
 </beans>

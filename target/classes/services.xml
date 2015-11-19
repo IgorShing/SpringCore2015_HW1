@@ -17,29 +17,29 @@
 		
 	<import resource = "dao.xml" />
 	
-	<bean id="userService" class="com.cinema.manager.controller.service.UserServiceImpl">
-		<constructor-arg ref="usersDaoMap" />
-	</bean>
-	
-	<bean id="auditoriumService" class="com.cinema.manager.controller.service.AuditoriumServiceImpl">
-		<constructor-arg ref="auditoriumDao" />
-	</bean>
-	
-	<bean id="eventService" class="com.cinema.manager.controller.service.EventServiceImpl">
-		<constructor-arg ref="eventDao" />
-	</bean>
-	
-	<bean id="ticketService" class="com.cinema.manager.controller.service.TicketServiceImpl">
-		<constructor-arg ref="ticketDao" />
-	</bean>
-	
-	<bean id="bookingService" class="com.cinema.manager.controller.service.BookingServiceImpl">
-		<constructor-arg ref="bookingDao" />
-		<constructor-arg ref="ticketDao" />
-	</bean>
-	
-	<bean id="discountService" class="com.cinema.manager.controller.service.DiscountServiceImpl">
-		<constructor-arg ref="strategies" />
-	</bean>
+		<bean id="userService" class="com.cinema.manager.controller.service.UserServiceImpl">
+			<constructor-arg ref="usersDaoMap" />
+		</bean>
+		
+		<bean id="auditoriumService" class="com.cinema.manager.controller.service.AuditoriumServiceImpl">
+			<constructor-arg ref="auditoriumDao" />
+		</bean>
+		
+		<bean id="eventService" class="com.cinema.manager.controller.service.EventServiceImpl">
+			<constructor-arg ref="eventDao" />
+		</bean>
+		
+		<bean id="ticketService" class="com.cinema.manager.controller.service.TicketServiceImpl">
+			<constructor-arg ref="ticketDao" />
+		</bean>
+		
+		<bean id="bookingService" class="com.cinema.manager.controller.service.BookingServiceImpl">
+			<constructor-arg ref="bookingDao" />
+			<constructor-arg ref="ticketDao" />
+		</bean>
+		
+		<bean id="discountService" class="com.cinema.manager.controller.service.DiscountServiceImpl">
+			<constructor-arg ref="strategies" />
+		</bean>
 	
 </beans>

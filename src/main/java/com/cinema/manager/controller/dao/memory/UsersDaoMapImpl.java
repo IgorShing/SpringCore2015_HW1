@@ -1,4 +1,4 @@
-package com.cinema.manager.controller.dao;
+package com.cinema.manager.controller.dao.memory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import com.cinema.manager.controller.dao.UsersDao;
 import com.cinema.manager.model.User;
 import com.cinema.manager.utils.DateConverterUtil;
 

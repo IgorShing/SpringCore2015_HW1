@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.cinema.manager.controller.dao.AuditoriumDao;
 import com.cinema.manager.demo.Demo;
+import com.cinema.manager.model.Auditorium;
 
 /**
  * Main application. Runs all demos.
@@ -39,6 +41,22 @@ public class App {
 		for (Demo demo : application.getDemoList()) {
 			demo.execute();
 		}
+
+		// Test dao for database
+		AuditoriumDao auditoriumDao = (AuditoriumDao) context.getBean("auditoriumDaoDBImpl");
+		System.out.println(auditoriumDao.getAuditoriums());
+
+		//auditoriumDao.create("Rocket", 400, "1 - 20");
+
+		System.out.println(auditoriumDao.getAuditorium(5));
+		auditoriumDao.delete(4);
+		System.out.println(auditoriumDao.getAuditoriums());
+
+		Auditorium auditorium = auditoriumDao.getAuditorium(5);
+		auditorium.setName("Cinema");
+		auditoriumDao.update(0, auditorium);
+		System.out.println(auditoriumDao.getAuditoriums());
+
 		context.close();
 	}
 }

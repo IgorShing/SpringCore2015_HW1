@@ -15,6 +15,9 @@ public class User {
 	private String	email;
 	private Date	dateOfBirth;
 
+	public User() {
+	}
+
 	public User(int id, String name, String email, Date dateOfBirth) {
 		super();
 		this.id = id;

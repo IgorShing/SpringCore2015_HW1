@@ -17,7 +17,7 @@ public class JDBCDemo {
 		/*		Circle circle = jdbcDaoImpl.getCircle(2);
 		System.out.println(circle.getName());
 
-		System.out.println("Number of recoreds in figures: "
+		System.out.println("Number of records in figures: "
 				+ jdbcDaoImpl.getCircleCount());
 
 		System.out.println("The name of a circle with Id = 1: "

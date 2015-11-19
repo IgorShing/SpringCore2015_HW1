@@ -30,6 +30,7 @@ public class JdbcDaoImpl {
 	private JdbcTemplate	  jdbcTemplate	= new JdbcTemplate();
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
+
 	public Circle getCircle(int circleId) {
 
 		Circle circle = null;
@@ -65,7 +66,7 @@ public class JdbcDaoImpl {
 	 */
 	public int getCircleCount() {
 		String sql = "SELECT Count(*) FROM Figures";
-		jdbcTemplate.setDataSource(getDataSource());
+		// jdbcTemplate.setDataSource(getDataSource());
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 

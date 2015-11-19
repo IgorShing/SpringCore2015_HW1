@@ -28,9 +28,9 @@ public class AuditoriumServiceDemo implements Demo {
 
 		System.out.println("All auditoriums after update:");
 		Auditorium auditorium = new Auditorium(0, "Leo", 100, "1,2,3,4,5");
-		auditoriumService.update(2, auditorium);
+		auditoriumService.update(3, auditorium);
 
-		System.out.println(auditoriumService.getAuditorium(2));
+		System.out.println(auditoriumService.getAuditorium(3));
 		System.out.println(auditoriumService.getAuditoriums());
 		System.out.println();
 	}

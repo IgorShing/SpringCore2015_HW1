@@ -17,21 +17,24 @@
 		
 	<import resource = "model.xml" />
 
-	<bean id="usersDaoMap" class="com.cinema.manager.controller.dao.UsersDaoMapImpl">
+	<bean id="usersDaoMap" class="com.cinema.manager.controller.dao.memory.UsersDaoMapImpl">
 		<constructor-arg ref = "users" />
 	</bean>
 	
-	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.AuditoriumDaoImpl">
+<!-- 	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.memory.AuditoriumDaoImpl">
 		<constructor-arg ref = "auditoriums" />
+	</bean> -->
+	
+	<bean id="auditoriumDao" class="com.cinema.manager.controller.dao.database.AuditoriumDaoDBImpl">
 	</bean>
 	
-	<bean id="eventDao" class="com.cinema.manager.controller.dao.EventDaoImpl">
+	<bean id="eventDao" class="com.cinema.manager.controller.dao.memory.EventDaoImpl">
 		<constructor-arg ref = "eventsMap" />
 	</bean>
 	
-	<bean id="bookingDao" class="com.cinema.manager.controller.dao.BookingDaoImpl" />
+	<bean id="bookingDao" class="com.cinema.manager.controller.dao.memory.BookingDaoImpl" />
 	
-	<bean id="ticketDao" class="com.cinema.manager.controller.dao.TicketDaoImpl">
+	<bean id="ticketDao" class="com.cinema.manager.controller.dao.memory.TicketDaoImpl">
 		<constructor-arg ref = "ticketsMap" />
 	</bean>
 	

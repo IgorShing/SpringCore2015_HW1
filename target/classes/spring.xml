@@ -14,7 +14,8 @@
 		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 		
 	<aop:aspectj-autoproxy />
-		
+	
+	<import resource = "database.xml" />
 	<import resource = "aop.xml" />
 	<import resource = "dao.xml" />
 	<import resource = "model.xml" />
@@ -31,7 +32,7 @@
 		<property name = "ticketService" ref = "ticketService"/>
 	</bean>
 	
-	<bean id = "application" class = "com.cinema.manager.App">
+	<bean name = "application" class = "com.cinema.manager.App">
 		<constructor-arg ref = "demoList" />
 	</bean>
 	

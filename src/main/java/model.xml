@@ -95,12 +95,6 @@
 		<entry key = "4"  value-ref="event_4" />
 	</util:map>
 	
-	<bean id = event_1 class = "com.cinema.manager.model.Event" >
-		<>
-	int id, String name, Date date, Ratings rating,
-			int auditoriumId
-	</bean>
-	
 	
 	<!-- Tickets -->
 	<!-- <util:properties id="props_ticket_1" location="classpath:com/cinema/manager/resources/ticket_1.properties"/>	

@@ -1,4 +1,4 @@
-package com.cinema.manager.controller.dao;
+package com.cinema.manager.controller.dao.memory;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.cinema.manager.controller.dao.BookingDao;
 import com.cinema.manager.model.Booking;
 import com.cinema.manager.model.Ticket;
 

@@ -7,6 +7,9 @@ public class Auditorium {
 	private int	   numberOfSeats;
 	private String	vipSeats;
 
+	public Auditorium() {
+	}
+
 	public Auditorium(int id, String name, int numberOfSeats, String vipSeats) {
 		super();
 		this.id = id;
